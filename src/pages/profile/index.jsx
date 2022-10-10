@@ -17,7 +17,7 @@ export const Profile = () => {
       const res = await axios({
         method: "get",
         baseURL: import.meta.env.VITE_API_URL,
-        url: `/${params.user.username}`,
+        url: `/${params.username}`,
       });
 
       const hunches = res.data.hunches.reduce((acc, hunch) => {
@@ -92,7 +92,8 @@ export const Profile = () => {
           <DateSelect currentDate={currentDate} onChange={setDate} />
           <div className="space-y-4">
             {isLoading && "Carregando jogos..."}
-            {hasError && "Ops! Algo deu errado." && console.log(hasError)}
+            {hasError && "Ops! Algo deu errado."}
+
             {isDone &&
               games.value?.map((game) => (
                 <Card
@@ -101,8 +102,8 @@ export const Profile = () => {
                   homeTeam={game.homeTeam}
                   awayTeam={game.awayTeam}
                   gameTime={format(new Date(game.gameTime), "H:mm")}
-                  homeTeamScore={user.hunches?.[game.id]?.homeTeamScore || ""}
-                  awayTeamScore={user.hunches?.[game.id]?.awayTeamScore || ""}
+                  homeTeamScore={user?.hunches?.[game.id]?.homeTeamScore || ""}
+                  awayTeamScore={user?.hunches?.[game.id]?.awayTeamScore || ""}
                   disabled={true}
                 />
               ))}

@@ -1,13 +1,16 @@
 import { addDays, subDays, format, formatISO } from "date-fns";
 import { ptBR } from "date-fns/locale";
-import { Icon } from "~/components/Icon";
+
+import { Icon } from "~/components/icon";
 
 export const DateSelect = ({ currentDate, onChange }) => {
   const date = new Date(currentDate);
+
   const prevDay = () => {
     const nextDate = subDays(date, 1);
     onChange(formatISO(nextDate));
   };
+
   const nextDay = () => {
     const nextDate = addDays(date, 1);
     onChange(formatISO(nextDate));

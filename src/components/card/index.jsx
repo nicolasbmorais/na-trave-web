@@ -22,13 +22,14 @@ export const Card = ({
   const formik = useFormik({
     onSubmit: (values) => {
       console.log(values);
+      console.log(auth);
 
       axios({
         method: "post",
         baseURL: import.meta.env.VITE_API_URL,
         url: "/hunches",
         headers: {
-          authorization: `Bearer ${auth.accessToken}`,
+          authorization: `Bearer ${auth.acessToken}`,
         },
         data: {
           ...values,
@@ -36,6 +37,7 @@ export const Card = ({
         },
       });
     },
+
     initialValues: {
       homeTeamScore,
       awayTeamScore,
